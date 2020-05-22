@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1081061789713",
+    "firebase_url": "https://flut-app.firebaseio.com",
+    "project_id": "flut-app",
+    "storage_bucket": "flut-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081061789713:android:fb9c959aec72e5d1af61b0",
+        "android_client_info": {
+          "package_name": "com.chandrachud.brew_crew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081061789713-3fqve5pskmd94g54ptaji59cp669h6qq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0eLq4ld2qGL25gyJQOuvOgBKA4ZgFpaY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1081061789713-3fqve5pskmd94g54ptaji59cp669h6qq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
