@@ -5,7 +5,6 @@ import 'package:brew_crew/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:brew_crew/screens/home/brew_list.dart';
 import 'package:brew_crew/shared/taskID.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:brew_crew/models/user.dart';
 
 
@@ -55,7 +54,7 @@ class Home extends StatelessWidget {
             // TimeOfDay currentTime = TimeOfDay.now();
             String randomString = Utils().createCrypto();
 
-            // print(userid);
+            print(randomString);
             await DatabaseService(uid: user.uid).createUserData(
                 'new task', 
                 false, 

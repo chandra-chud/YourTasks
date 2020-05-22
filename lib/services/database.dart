@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:brew_crew/models/brew.dart';
-import 'package:flutter/material.dart';
+//import 'package:flutter/material.dart';
 
 class DatabaseService {
   final String uid;
@@ -17,8 +17,9 @@ class DatabaseService {
 
 
   Future createUserData(String name, bool checked, String tuid) async {
-    //print('called');
-    return await brewCollection.add({
+    print('called');
+    print(name);
+    return await brewCollection.document(tuid).setData({
       'name': name,
       'checked': checked,
       'puid':uid,
@@ -26,6 +27,57 @@ class DatabaseService {
     });
   }
 
+  // Future getTask(String name, String tuid) async {
+  //   return await brewCollection
+  //   .snapshots();
+  // }
+
+  // Future getTask(String name, widget.checked,String tuid) async {
+  //   QuerySnapshot qShot = await brewCollection.getDocuments();
+
+  //   dynamic myList = qShot.documents.map((doc) => Brew(
+  //     name: doc.data['name'],
+  //     puid: doc.data['puid'],
+  //     tuid: doc.data['tuid'],
+  //   )).toList();
+
+  //   myList[0].name = name;
+  //   // return await brewCollection
+  //   //     .document();
+  // }
+
+  // List<Brew> brewElementFromSnapshots(QuerySnapshot snapshot){
+  //   return snapshot.documents.map((doc) {
+  //     return Brew(
+  //         name: doc.data['name'] ?? '',
+  //         checked: doc.data['checked'] ?? false,
+  //         puid: doc.data['puid'] ?? false,
+  //         tuid: doc.data['tuid'] ?? false,
+  //         );
+  //   });
+  // }
+
+  // Stream<List<Brew>> get currentTask {
+  //   return brewCollection
+  //   .where('tuid', isEqualTo: tuid)
+  //   .snapshots().map(brewElementFromSnapshots);
+  // } 
+
+
+  List<Brew> _brewListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return Brew(
+          name: doc.data['name'] ?? '',
+          checked: doc.data['checked'] ?? false,
+          puid: doc.data['puid'] ?? '',
+          tuid: doc.data['tuid'] ?? '',
+          );
+    }).toList();
+  }
+
+  Stream<List<Brew>> get brews {
+    return brewCollection.snapshots().map(_brewListFromSnapshot);
+  }
   // Future getUserData(TimeOfDay time, String name, bool checked) async {
   //   return await brewCollection.document(uid).setData({
   //     'time': time,
@@ -46,15 +98,4 @@ class DatabaseService {
   // }
   //brew list from snapshots
 
-  List<Brew> _brewListFromSnapshot(QuerySnapshot snapshot) {
-    return snapshot.documents.map((doc) {
-      return Brew(
-          name: doc.data['name'] ?? '',
-          checked: doc.data['checked'] ?? false);
-    }).toList();
-  }
-
-  Stream<List<Brew>> get brews {
-    return brewCollection.snapshots().map(_brewListFromSnapshot);
-  }
 }
