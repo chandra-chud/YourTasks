@@ -79,14 +79,19 @@ class _SignInState extends State<SignIn> {
                         if (_formKey.currentState.validate() == true) {
                           dynamic result = await _auth
                               .signInWithEmailAndPassword(email, password);
-                          setState(() => loading = true);
-                          
-                          if (result == null) {
-                            setState(() {
-                              error = 'Invalid Credentials';
-                              loading = false;
-                            });
+                          if(this.mounted){
+                            setState(() => loading = true);
                           }
+
+                          if (result == null) {
+                            if(this.mounted){                          
+                              setState(() {
+                                error = 'Invalid Credentials';
+                                loading = false;
+                              });
+                            }
+                          }
+
                           print(email);
                           print(password);
                         }

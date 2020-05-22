@@ -1,7 +1,8 @@
 class Brew {
   final String name;
-  final String sugars;
-  final int strength;
+  final bool checked;
+  final String tuid;
+  final String puid;
 
-  Brew({this.name, this.sugars, this.strength});
+  Brew({this.name, this.checked,  this.tuid, this.puid});
 }

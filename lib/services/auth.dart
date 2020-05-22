@@ -1,6 +1,6 @@
 import 'package:brew_crew/models/user.dart';
-import 'package:brew_crew/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 //import 'package:flutter/material.dart';
 
 class AuthService {
@@ -48,9 +48,10 @@ class AuthService {
     try {
       AuthResult res = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       FirebaseUser user = res.user;
+      TimeOfDay time = TimeOfDay(hour: 15, minute: 0);
 
       //create new doc for user with uid
-      await DatabaseService(uid: user.uid).updateUserData('0', 'new member', 100);
+//      await DatabaseService(uid: user.uid).updateUserData(time, 'new task', true);
 
       return _userFromFirebaseUser(user);
     } catch (e) {
