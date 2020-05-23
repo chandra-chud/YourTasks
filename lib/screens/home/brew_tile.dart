@@ -10,44 +10,51 @@ class BrewTile extends StatelessWidget {
   BrewTile({this.brew});
 
   @override
-
   Widget build(BuildContext context) {
-    //print(brew.name);
-//   var task = TaskClass(brew.name, brew.checked,brew.tuid,brew.puid);
-    final user = Provider.of<User>(context);    
+    final user = Provider.of<User>(context);
 
     return Padding(
       padding: EdgeInsets.only(top: 8.0),
       child: Card(
           margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
           child: ListTile(
-              leading: Checkbox(
-                value: brew.checked, 
-                activeColor: Colors.purple,
-                onChanged: (bool newVal) {
-                    DatabaseService(uid: user.uid).createUserData(brew.name, newVal, brew.tuid);
-                },
-              ),
-              title: Text(brew.name,
-                  style: (brew.checked
-                      ? TextStyle(decoration: TextDecoration.lineThrough)
-                      : TextStyle(fontWeight: FontWeight.bold))),
-              subtitle: Text('Scheduled time:'),
-              trailing: ((brew.checked == true) ? FlatButton():FlatButton(
-                child: Icon(Icons.mode_edit),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => TaskPage(
-                      brew.name, brew.checked,brew.puid, brew.tuid
-                    )),
-                  );
-                },
-              )))),
+            leading: Checkbox(
+              value: brew.checked,
+              activeColor: Colors.purple,
+              onChanged: (bool newVal) {
+                DatabaseService(uid: user.uid)
+                    .createUserData(brew.name, newVal, brew.tuid);
+              },
+            ),
+            title: Text(brew.name,
+                style: (brew.checked
+                    ? TextStyle(decoration: TextDecoration.lineThrough)
+                    : TextStyle(fontWeight: FontWeight.bold))),
+            subtitle: Text('Time:'),
+            trailing: ((brew.checked == true)
+                ? FlatButton.icon(
+                    icon: Icon(Icons.delete),
+                    label: Text('Delete'),
+                    onPressed: () {
+                      DatabaseService()
+                          .deleteUserData(brew.name, brew.tuid);
+                    },
+                  )
+                : FlatButton(
+                    child: Icon(Icons.mode_edit),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TaskPage(
+                                brew.name, brew.checked, brew.puid, brew.tuid)),
+                      );
+                    },
+                  )),
+          )),
     );
   }
 }
-
 
 // return Padding(
 //   padding: EdgeInsets.only(top: 8.0),
@@ -55,7 +62,7 @@ class BrewTile extends StatelessWidget {
 //       margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
 //       child: ListTile(
 //           leading: Checkbox(
-//             value: brew.checked, 
+//             value: brew.checked,
 //             checkColor: Colors.white,
 //             onChanged: (bool newVal) {
 //               setState(() {

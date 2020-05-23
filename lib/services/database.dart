@@ -17,7 +17,7 @@ class DatabaseService {
 
 
   Future createUserData(String name, bool checked, String tuid) async {
-    print('called');
+    print('edited');
     print(name);
     return await brewCollection.document(tuid).setData({
       'name': name,
@@ -26,6 +26,16 @@ class DatabaseService {
       'tuid':tuid
     });
   }
+
+  Future deleteUserData(String name, String tuid) async {
+    print('deleted');
+    print(name);
+
+    return await brewCollection.document(tuid).delete();
+  }
+
+
+
 
   // Future getTask(String name, String tuid) async {
   //   return await brewCollection
