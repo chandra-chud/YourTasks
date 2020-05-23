@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:brew_crew/models/brew.dart';
 import 'package:provider/provider.dart';
 import 'package:brew_crew/screens/home/brew_tile.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:brew_crew/models/user.dart';
-// import 'package:brew_crew/shared/taskID.dart';
 
 class BrewList extends StatefulWidget {
-  //BrewList();
   @override
   _BrewListState createState() => _BrewListState();
 }

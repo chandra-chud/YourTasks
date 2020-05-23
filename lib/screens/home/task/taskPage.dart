@@ -9,11 +9,12 @@ import 'package:brew_crew/models/user.dart';
 
 class TaskPage extends StatefulWidget {
   final String name;
+  final String time;
   final bool checked;
   final String puid;
   final String tuid;
 
-  const TaskPage(this.name, this.checked, this.puid, this.tuid);
+  const TaskPage(this.name,this.time, this.checked, this.puid, this.tuid);
 
   @override
   _TaskPageState createState() => _TaskPageState();
@@ -23,6 +24,7 @@ class _TaskPageState extends State<TaskPage> {
   String taskName = '';
   String taskID = '';
   String taskUID = '';
+  String displayTime = '';
 
   TimeOfDay time = TimeOfDay(hour: 15, minute: 0);
   TimeOfDay pickedTime = TimeOfDay.now();
@@ -37,6 +39,13 @@ class _TaskPageState extends State<TaskPage> {
         time = pickedTime;
       });
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+//    displayTime = widget.time;
+    taskName = widget.name;
   }
 
   // print()
@@ -68,7 +77,7 @@ class _TaskPageState extends State<TaskPage> {
             children: <Widget>[
               SizedBox(height: 20.0),
               TextFormField(
-                initialValue: widget.name,
+                initialValue: taskName,
                 decoration: textInputDecoration.copyWith(hintText: 'Task Name'),
                 onChanged: (val) {
                   setState(() {
@@ -77,13 +86,19 @@ class _TaskPageState extends State<TaskPage> {
                 },
               ),
               SizedBox(height: 20.0),
-              RaisedButton(
-                color: Colors.white,
-                child: Icon(Icons.timer),
-                onPressed: () {
-                  selectTime(context);
-                  print(time);
-                },
+              Row(
+                children: <Widget>[
+                  RaisedButton(
+                    color: Colors.white,
+                    child: Icon(Icons.timer),
+                    onPressed: () {
+                      selectTime(context);
+                      print(time);
+                    },
+                  ),
+                  SizedBox(width: 12.0),
+                  Text(displayTime)
+                ],
               ),
               SizedBox(height: 20.0),
               RaisedButton(
@@ -93,11 +108,12 @@ class _TaskPageState extends State<TaskPage> {
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () async {
+                    print('taskpage');
+                    print(pickedTime.toString());
+
                     await DatabaseService(uid: user.uid)
-                        .createUserData(taskName, widget.checked, widget.tuid);
+                        .createUserData(taskName, pickedTime.toString(), widget.checked, widget.tuid);
                     Navigator.pop(context);
-                    // dynamic theTask = await DatabaseService(uid: user.uid).getTask(widget.name, widget.tuid);
-                    // theTask.name = taskName;
                   }),
               SizedBox(height: 12.0),
             ],

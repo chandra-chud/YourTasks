@@ -16,11 +16,15 @@ class DatabaseService {
   // }
 
 
-  Future createUserData(String name, bool checked, String tuid) async {
+  Future createUserData(String name, String time, bool checked, String tuid) async {
     print('edited');
     print(name);
+
+    print(time);
+
     return await brewCollection.document(tuid).setData({
       'name': name,
+      'time':time,
       'checked': checked,
       'puid':uid,
       'tuid':tuid
@@ -78,6 +82,7 @@ class DatabaseService {
     return snapshot.documents.map((doc) {
       return Brew(
           name: doc.data['name'] ?? '',
+          time: doc.data['time'] ?? '',
           checked: doc.data['checked'] ?? false,
           puid: doc.data['puid'] ?? '',
           tuid: doc.data['tuid'] ?? '',
@@ -88,6 +93,7 @@ class DatabaseService {
   Stream<List<Brew>> get brews {
     return brewCollection.snapshots().map(_brewListFromSnapshot);
   }
+
   // Future getUserData(TimeOfDay time, String name, bool checked) async {
   //   return await brewCollection.document(uid).setData({
   //     'time': time,

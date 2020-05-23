@@ -33,7 +33,7 @@ class Home extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.purple[80],
         appBar: AppBar(
-          title: Text('Your Tasks'),
+          title: Text('Todays Tasks'),
           backgroundColor: Colors.purple[500],
           elevation: 0.0,
           actions: <Widget>[
@@ -51,12 +51,12 @@ class Home extends StatelessWidget {
           child: const Icon(Icons.add),
           backgroundColor: Colors.purple[500],
           onPressed: () async {
-            // TimeOfDay currentTime = TimeOfDay.now();
             String randomString = Utils().createCrypto();
-
+            String currentTime =  '';
             print(randomString);
             await DatabaseService(uid: user.uid).createUserData(
                 'new task', 
+                currentTime,
                 false, 
                 randomString
             );

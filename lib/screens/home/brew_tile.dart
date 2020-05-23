@@ -23,7 +23,7 @@ class BrewTile extends StatelessWidget {
               activeColor: Colors.purple,
               onChanged: (bool newVal) {
                 DatabaseService(uid: user.uid)
-                    .createUserData(brew.name, newVal, brew.tuid);
+                    .createUserData(brew.name,brew.time, newVal, brew.tuid);
               },
             ),
             title: Text(brew.name,
@@ -47,7 +47,7 @@ class BrewTile extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) => TaskPage(
-                                brew.name, brew.checked, brew.puid, brew.tuid)),
+                                brew.name, brew.time,brew.checked, brew.puid, brew.tuid)),
                       );
                     },
                   )),
