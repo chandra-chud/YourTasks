@@ -1,9 +1,9 @@
 import 'package:brew_crew/services/auth.dart';
-import 'package:brew_crew/models/brew.dart';
+import 'package:brew_crew/models/task.dart';
 import 'package:flutter/material.dart';
 import 'package:brew_crew/services/database.dart';
 import 'package:provider/provider.dart';
-import 'package:brew_crew/screens/home/brew_list.dart';
+import 'package:brew_crew/screens/home/task_list.dart';
 import 'package:brew_crew/shared/taskID.dart';
 import 'package:brew_crew/models/user.dart';
 
@@ -16,8 +16,8 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);    
 
-    return StreamProvider<List<Brew>>.value(
-      value: DatabaseService().brews,
+    return StreamProvider<List<Task>>.value(
+      value: DatabaseService().tasks,
       child: Scaffold(
         backgroundColor: Colors.purple[80],
         appBar: AppBar(
@@ -34,7 +34,7 @@ class Home extends StatelessWidget {
             )
           ],
         ),
-        body: BrewList(),
+        body: TaskList(),
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           backgroundColor: Colors.purple[500],

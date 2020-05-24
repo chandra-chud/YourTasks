@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:brew_crew/models/brew.dart';
+import 'package:brew_crew/models/task.dart';
 
 class DatabaseService {
   final String uid;
   DatabaseService({this.uid});
 
-  final CollectionReference brewCollection =
-      Firestore.instance.collection('brews');
+  final CollectionReference taskCollection =
+      Firestore.instance.collection('tasks');
 
   Future createUserData(String name, String time, bool checked, String tuid) async {
-    return await brewCollection.document(tuid).setData({
+    return await taskCollection.document(tuid).setData({
       'name': name,
       'time':time,
       'checked': checked,
@@ -19,13 +19,13 @@ class DatabaseService {
   }
 
   Future deleteUserData(String name, String tuid) async {
-    return await brewCollection.document(tuid).delete();
+    return await taskCollection.document(tuid).delete();
   }
 
 
-  List<Brew> _brewListFromSnapshot(QuerySnapshot snapshot) {
+  List<Task> _taskListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
-      return Brew(
+      return Task(
           name: doc.data['name'] ?? '',
           time: doc.data['time'] ?? '',
           checked: doc.data['checked'] ?? false,
@@ -35,7 +35,7 @@ class DatabaseService {
     }).toList();
   }
 
-  Stream<List<Brew>> get brews {
-    return brewCollection.snapshots().map(_brewListFromSnapshot);
+  Stream<List<Task>> get tasks {
+    return taskCollection.snapshots().map(_taskListFromSnapshot);
   }
 }

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:brew_crew/models/brew.dart';
+import 'package:brew_crew/models/task.dart';
 import 'package:brew_crew/screens/home/task/taskPage.dart';
 import 'package:brew_crew/services/database.dart';
 import 'package:brew_crew/models/user.dart';
 import 'package:provider/provider.dart';
 
-class BrewTile extends StatelessWidget {
-  final Brew brew;
-  BrewTile({this.brew});
+class TaskTile extends StatelessWidget {
+  final Task task;
+  TaskTile({this.task});
 
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
-    final displayTime = brew.time.substring(10, 15);
+    final displayTime = task.time.substring(10, 15);
 
     return Padding(
       padding: EdgeInsets.only(top: 8.0),
@@ -20,25 +20,25 @@ class BrewTile extends StatelessWidget {
           margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
           child: ListTile(
             leading: Checkbox(
-              value: brew.checked,
+              value: task.checked,
               activeColor: Colors.purple,
               onChanged: (bool newVal) {
                 DatabaseService(uid: user.uid)
-                    .createUserData(brew.name,brew.time, newVal, brew.tuid);
+                    .createUserData(task.name,task.time, newVal, task.tuid);
               },
             ),
-            title: Text(brew.name,
-                style: (brew.checked
+            title: Text(task.name,
+                style: (task.checked
                     ? TextStyle(decoration: TextDecoration.lineThrough)
                     : TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0))),
             subtitle: Text('Due At:$displayTime', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
-            trailing: ((brew.checked == true)
+            trailing: ((task.checked == true)
                 ? FlatButton.icon(
                     icon: Icon(Icons.delete),
                     label: Text('Delete'),
                     onPressed: () {
                       DatabaseService()
-                          .deleteUserData(brew.name, brew.tuid);
+                          .deleteUserData(task.name, task.tuid);
                     },
                   )
                 : FlatButton(
@@ -48,7 +48,7 @@ class BrewTile extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) => TaskPage(
-                                brew.name, brew.time,brew.checked, brew.puid, brew.tuid)),
+                                task.name, task.time,task.checked, task.puid, task.tuid)),
                       );
                     },
                   )),

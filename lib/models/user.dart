@@ -1,8 +1,7 @@
-import 'package:brew_crew/models/brew.dart';
+import 'package:brew_crew/models/task.dart';
 
 class User {
   final String uid;
-  final List<Brew> brewsArray;
 
-  User({this.uid, this.brewsArray});
+  User({this.uid});
 }
