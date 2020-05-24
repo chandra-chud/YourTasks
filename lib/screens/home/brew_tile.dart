@@ -12,6 +12,7 @@ class BrewTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
+    final displayTime = brew.time.substring(10, 15);
 
     return Padding(
       padding: EdgeInsets.only(top: 8.0),
@@ -29,8 +30,8 @@ class BrewTile extends StatelessWidget {
             title: Text(brew.name,
                 style: (brew.checked
                     ? TextStyle(decoration: TextDecoration.lineThrough)
-                    : TextStyle(fontWeight: FontWeight.bold))),
-            subtitle: Text('Time:'),
+                    : TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0))),
+            subtitle: Text('Due At:$displayTime', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
             trailing: ((brew.checked == true)
                 ? FlatButton.icon(
                     icon: Icon(Icons.delete),
@@ -55,35 +56,3 @@ class BrewTile extends StatelessWidget {
     );
   }
 }
-
-// return Padding(
-//   padding: EdgeInsets.only(top: 8.0),
-//   child: Card(
-//       margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
-//       child: ListTile(
-//           leading: Checkbox(
-//             value: brew.checked,
-//             checkColor: Colors.white,
-//             onChanged: (bool newVal) {
-//               setState(() {
-//                 brew.checked = newVal;
-//               });
-//             },
-//           ),
-//           title: Text(brew.name,
-//               style: (brew.checked
-//                   ? TextStyle(decoration: TextDecoration.lineThrough)
-//                   : TextStyle(fontWeight: FontWeight.bold))),
-//           subtitle: Text('Scheduled time:'),
-//           trailing: ((brew.checked == true) ? FlatButton():FlatButton(
-//             child: Icon(Icons.mode_edit),
-//             onPressed: () {
-//               Navigator.push(
-//                 context,
-//                 MaterialPageRoute(builder: (context) => TaskPage(
-//                   brew.name, brew.checked,brew.puid, brew.tuid
-//                 )),
-//               );
-//             },
-//           )))),
-// );

@@ -11,18 +11,6 @@ import 'package:brew_crew/models/user.dart';
 class Home extends StatelessWidget {
   
   final AuthService _auth = AuthService();
-//  final user = await FirebaseAuth.instance.currentUser();
-    // User _userFromFirebaseUser(FirebaseUser user) {
-    //   return user != null ? User(uid: user.uid): null;
-    // }
-
-    // Future<String> getUser() async {
-    //   final user = await FirebaseAuth.instance.currentUser();
-    //   String userid =  _userFromFirebaseUser(user).uid;
-    //   return userid;
-    // }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +40,9 @@ class Home extends StatelessWidget {
           backgroundColor: Colors.purple[500],
           onPressed: () async {
             String randomString = Utils().createCrypto();
-            String currentTime =  '';
+            String currentTime =  TimeOfDay.now().toString();
             print(randomString);
+
             await DatabaseService(uid: user.uid).createUserData(
                 'new task', 
                 currentTime,

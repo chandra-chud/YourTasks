@@ -23,7 +23,8 @@ class _BrewListState extends State<BrewList> {
     }
 
     brews = filterBrew;
-  
+    
+//    brews.sort((a, b) => a.checked < b.checked);
     return Row(
       children: <Widget>[
         Expanded(

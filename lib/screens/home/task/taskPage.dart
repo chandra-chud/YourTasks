@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-//import 'package:flutter/src/material/time_picker.dart';
 import 'package:brew_crew/shared/constants.dart';
-//import 'package:brew_crew/shared/TaskClass.dart';
 import 'package:brew_crew/services/database.dart';
 import 'package:provider/provider.dart';
-import 'package:brew_crew/models/brew.dart';
 import 'package:brew_crew/models/user.dart';
 
 class TaskPage extends StatefulWidget {
@@ -22,33 +19,34 @@ class TaskPage extends StatefulWidget {
 
 class _TaskPageState extends State<TaskPage> {
   String taskName = '';
-  String taskID = '';
-  String taskUID = '';
   String displayTime = '';
+  String displayTimeFormatted = '';
 
-  TimeOfDay time = TimeOfDay(hour: 15, minute: 0);
-  TimeOfDay pickedTime = TimeOfDay.now();
+  TimeOfDay time = TimeOfDay.now();
+  TimeOfDay pickedTime = TimeOfDay(hour: 15, minute: 0);
 
   Future<Null> selectTime(BuildContext context) async {
     final TimeOfDay pickedTime =
         await showTimePicker(context: context, initialTime: time);
 
     if (pickedTime != null && pickedTime != time) {
-      print(pickedTime);
       setState(() {
         time = pickedTime;
+        displayTime = time.toString();
+        displayTimeFormatted = displayTime.substring(10, 15);
       });
     }
   }
 
+
   @override
   void initState() {
     super.initState();
-//    displayTime = widget.time;
+    displayTime = widget.time.toString();
+    displayTimeFormatted = displayTime.substring(10, 15);
     taskName = widget.name;
   }
 
-  // print()
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
@@ -93,11 +91,12 @@ class _TaskPageState extends State<TaskPage> {
                     child: Icon(Icons.timer),
                     onPressed: () {
                       selectTime(context);
-                      print(time);
+                      displayTime = time.toString();
+                      displayTimeFormatted = displayTime.substring(10, 15);
                     },
                   ),
                   SizedBox(width: 12.0),
-                  Text(displayTime)
+                  Text(displayTimeFormatted)
                 ],
               ),
               SizedBox(height: 20.0),
@@ -109,10 +108,11 @@ class _TaskPageState extends State<TaskPage> {
                   ),
                   onPressed: () async {
                     print('taskpage');
-                    print(pickedTime.toString());
+                    print(displayTime);
 
                     await DatabaseService(uid: user.uid)
-                        .createUserData(taskName, pickedTime.toString(), widget.checked, widget.tuid);
+                        .createUserData(taskName, displayTime, widget.checked, widget.tuid);
+
                     Navigator.pop(context);
                   }),
               SizedBox(height: 12.0),
