@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:brew_crew/models/task.dart';
-import 'package:brew_crew/screens/home/task/taskPage.dart';
-import 'package:brew_crew/services/database.dart';
-import 'package:brew_crew/models/user.dart';
+import 'package:task_app/models/task.dart';
+import 'package:task_app/screens/home/task/taskPage.dart';
+import 'package:task_app/services/database.dart';
+import 'package:task_app/models/user.dart';
 import 'package:provider/provider.dart';
+import 'package:task_app/shared/loading.dart';
 
 class TaskTile extends StatelessWidget {
   final Task task;
@@ -24,21 +25,22 @@ class TaskTile extends StatelessWidget {
               activeColor: Colors.purple,
               onChanged: (bool newVal) {
                 DatabaseService(uid: user.uid)
-                    .createUserData(task.name,task.time, newVal, task.tuid);
+                    .createUserData(task.name, task.time, newVal, task.tuid);
               },
             ),
             title: Text(task.name,
                 style: (task.checked
                     ? TextStyle(decoration: TextDecoration.lineThrough)
                     : TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0))),
-            subtitle: Text('Due At:$displayTime', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+            subtitle: Text('Due At:$displayTime',
+                style:
+                    TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
             trailing: ((task.checked == true)
                 ? FlatButton.icon(
                     icon: Icon(Icons.delete),
                     label: Text('Delete'),
                     onPressed: () {
-                      DatabaseService()
-                          .deleteUserData(task.name, task.tuid);
+                      DatabaseService().deleteUserData(task.name, task.tuid);
                     },
                   )
                 : FlatButton(
@@ -47,8 +49,8 @@ class TaskTile extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => TaskPage(
-                                task.name, task.time,task.checked, task.puid, task.tuid)),
+                            builder: (context) => TaskPage(task.name, task.time,
+                                task.checked, task.puid, task.tuid)),
                       );
                     },
                   )),

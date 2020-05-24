@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:brew_crew/models/task.dart';
+import 'package:task_app/models/task.dart';
 
 class DatabaseService {
   final String uid;

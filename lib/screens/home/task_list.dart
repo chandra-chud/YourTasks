@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:brew_crew/models/task.dart';
+import 'package:task_app/models/task.dart';
 import 'package:provider/provider.dart';
-import 'package:brew_crew/screens/home/task_tile.dart';
-import 'package:brew_crew/models/user.dart';
+import 'package:task_app/screens/home/task_tile.dart';
+import 'package:task_app/models/user.dart';
 
 class TaskList extends StatefulWidget {
   @override

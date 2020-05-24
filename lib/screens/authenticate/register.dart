@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:brew_crew/shared/loading.dart';
-import 'package:brew_crew/services/auth.dart';
-import 'package:brew_crew/shared/constants.dart';
+import 'package:task_app/shared/loading.dart';
+import 'package:task_app/services/auth.dart';
+import 'package:task_app/shared/constants.dart';
 
 class Register extends StatefulWidget {
   final Function toggleView;
@@ -75,24 +75,22 @@ class _RegisterState extends State<Register> {
                           ),
                           onPressed: () async {
                             if (_formKey.currentState.validate() == true) {
-                              dynamic result =
-                                  await _auth.registerWithEmailAndPassword(
-                                      email, password);
-                              if (this.mounted) {
+                              if(this.mounted){
                                 setState(() => loading = true);
                               }
 
+                              dynamic result =
+                                  await _auth.registerWithEmailAndPassword(
+                                      email, password);
+
                               if (result == null) {
-                                if (this.mounted) {
+                                if(this.mounted){
                                   setState(() {
-                                    error = 'Please supply a valid email';
                                     loading = false;
+                                    error = 'Invalid credentials';
                                   });
                                 }
                               }
-
-                              print(email);
-                              print(password);
                             }
                           },
                         ),

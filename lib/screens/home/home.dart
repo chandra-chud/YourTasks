@@ -1,11 +1,11 @@
-import 'package:brew_crew/services/auth.dart';
-import 'package:brew_crew/models/task.dart';
+import 'package:task_app/services/auth.dart';
+import 'package:task_app/models/task.dart';
 import 'package:flutter/material.dart';
-import 'package:brew_crew/services/database.dart';
+import 'package:task_app/services/database.dart';
 import 'package:provider/provider.dart';
-import 'package:brew_crew/screens/home/task_list.dart';
-import 'package:brew_crew/shared/taskID.dart';
-import 'package:brew_crew/models/user.dart';
+import 'package:task_app/screens/home/task_list.dart';
+import 'package:task_app/shared/taskID.dart';
+import 'package:task_app/models/user.dart';
 
 
 class Home extends StatelessWidget {
@@ -41,7 +41,6 @@ class Home extends StatelessWidget {
           onPressed: () async {
             String randomString = Utils().createCrypto();
             String currentTime =  TimeOfDay.now().toString();
-            print(randomString);
 
             await DatabaseService(uid: user.uid).createUserData(
                 'new task', 

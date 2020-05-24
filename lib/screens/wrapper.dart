@@ -1,8 +1,8 @@
-import 'package:brew_crew/screens/authenticate/authenticate.dart';
-import 'package:brew_crew/screens/home/home.dart';
+import 'package:task_app/screens/authenticate/authenticate.dart';
+import 'package:task_app/screens/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:brew_crew/models/user.dart';
+import 'package:task_app/models/user.dart';
 
 class Wrapper extends StatelessWidget {
   @override
@@ -10,7 +10,7 @@ class Wrapper extends StatelessWidget {
 
     final user = Provider.of<User>(context);    
 
-   print(user);
+    print(user);
 
     if(user == null){
       return Authenticate();    

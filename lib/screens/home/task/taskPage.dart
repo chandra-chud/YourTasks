@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:brew_crew/shared/constants.dart';
-import 'package:brew_crew/services/database.dart';
+import 'package:task_app/shared/constants.dart';
+import 'package:task_app/services/database.dart';
 import 'package:provider/provider.dart';
-import 'package:brew_crew/models/user.dart';
+import 'package:task_app/models/user.dart';
 
 class TaskPage extends StatefulWidget {
   final String name;
