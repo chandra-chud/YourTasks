@@ -4,7 +4,6 @@ import 'package:task_app/screens/home/task/taskPage.dart';
 import 'package:task_app/services/database.dart';
 import 'package:task_app/models/user.dart';
 import 'package:provider/provider.dart';
-import 'package:task_app/shared/loading.dart';
 
 class TaskTile extends StatelessWidget {
   final Task task;

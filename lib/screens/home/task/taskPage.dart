@@ -25,6 +25,7 @@ class _TaskPageState extends State<TaskPage> {
   TimeOfDay time = TimeOfDay.now();
   TimeOfDay pickedTime = TimeOfDay(hour: 15, minute: 0);
 
+  //time picker function
   Future<Null> selectTime(BuildContext context) async {
     final TimeOfDay pickedTime =
         await showTimePicker(context: context, initialTime: time);
@@ -112,7 +113,7 @@ class _TaskPageState extends State<TaskPage> {
 
                     await DatabaseService(uid: user.uid)
                         .createUserData(taskName, displayTime, widget.checked, widget.tuid);
-
+                    // redirect to the previous page
                     Navigator.pop(context);
                   }),
               SizedBox(height: 12.0),

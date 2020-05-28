@@ -8,6 +8,8 @@ class DatabaseService {
   final CollectionReference taskCollection =
       Firestore.instance.collection('tasks');
 
+
+  // to create and update task data
   Future createUserData(String name, String time, bool checked, String tuid) async {
     return await taskCollection.document(tuid).setData({
       'name': name,
@@ -18,11 +20,13 @@ class DatabaseService {
     });
   }
 
+  // to delete task data
   Future deleteUserData(String name, String tuid) async {
     return await taskCollection.document(tuid).delete();
   }
 
 
+  // converts querysnapshots from firebase to our own models sturcture
   List<Task> _taskListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       return Task(
@@ -35,6 +39,7 @@ class DatabaseService {
     }).toList();
   }
 
+  // get the query snapshots and return the converted from the above function
   Stream<List<Task>> get tasks {
     return taskCollection.snapshots().map(_taskListFromSnapshot);
   }

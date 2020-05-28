@@ -15,10 +15,9 @@ class AuthService {
   Stream<User> get user {
     return _auth.onAuthStateChanged
       .map((FirebaseUser user) => _userFromFirebaseUser(user)); 
-//      .map(_userFromFirebaseUser);
   }
 
-  //sign in anon
+  //sign in anonymously
   Future signInAnon() async {
     try {
       AuthResult res = await _auth.signInAnonymously();
@@ -48,10 +47,6 @@ class AuthService {
     try {
       AuthResult res = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       FirebaseUser user = res.user;
-      //TimeOfDay time = TimeOfDay(hour: 15, minute: 0);
-
-      //create new doc for user with uid
-//      await DatabaseService(uid: user.uid).updateUserData(time, 'new task', true);
 
       return _userFromFirebaseUser(user);
     } catch (e) {

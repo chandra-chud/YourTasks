@@ -15,7 +15,8 @@ class _TaskListState extends State<TaskList> {
     var tasks = Provider.of<List<Task>>(context);
     final user = Provider.of<User>(context);    
     final List<Task> filterTask = [];
-        
+
+    // get the current users tasks        
     for(var x in tasks){
       if(x.puid == user.uid){
         filterTask.add(x);

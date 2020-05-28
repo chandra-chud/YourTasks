@@ -75,10 +75,12 @@ class _RegisterState extends State<Register> {
                           ),
                           onPressed: () async {
                             if (_formKey.currentState.validate() == true) {
+                              // for the loading page
                               if(this.mounted){
                                 setState(() => loading = true);
                               }
 
+                              //sign in and get the result
                               dynamic result =
                                   await _auth.registerWithEmailAndPassword(
                                       email, password);

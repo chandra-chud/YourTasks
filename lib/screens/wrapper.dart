@@ -7,7 +7,7 @@ import 'package:task_app/models/user.dart';
 class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
+    //can get the current user
     final user = Provider.of<User>(context);    
 
     print(user);
