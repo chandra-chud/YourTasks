@@ -6,12 +6,12 @@ class DatabaseService {
   DatabaseService({this.uid});
 
   final CollectionReference taskCollection =
-      Firestore.instance.collection('tasks');
+      FirebaseFirestore.instance.collection('tasks');
 
 
   // to create and update task data
   Future createUserData(String name, String time, bool checked, String tuid) async {
-    return await taskCollection.document(tuid).setData({
+    return await taskCollection.doc(tuid).set({
       'name': name,
       'time':time,
       'checked': checked,
@@ -22,19 +22,19 @@ class DatabaseService {
 
   // to delete task data
   Future deleteUserData(String name, String tuid) async {
-    return await taskCollection.document(tuid).delete();
+    return await taskCollection.doc(tuid).delete();
   }
 
 
   // converts querysnapshots from firebase to our own models sturcture
   List<Task> _taskListFromSnapshot(QuerySnapshot snapshot) {
-    return snapshot.documents.map((doc) {
+    return snapshot.docs.map((doc1) {
       return Task(
-          name: doc.data['name'] ?? '',
-          time: doc.data['time'] ?? '',
-          checked: doc.data['checked'] ?? false,
-          puid: doc.data['puid'] ?? '',
-          tuid: doc.data['tuid'] ?? '',
+          name: doc1.data()['name'] ?? '',
+          time: doc1.data()['time'] ?? '',
+          checked: doc1.data()['checked'] ?? false,
+          puid: doc1.data()['puid'] ?? '',
+          tuid: doc1.data()['tuid'] ?? '',
           );
     }).toList();
   }

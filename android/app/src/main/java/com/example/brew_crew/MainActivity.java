@@ -1,4 +1,4 @@
-package com.example.task_app;
+package com.chandrachud.tasksapp;
 
 import io.flutter.embedding.android.FlutterActivity;
 

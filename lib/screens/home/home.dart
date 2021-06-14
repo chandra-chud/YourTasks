@@ -14,7 +14,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);    
+    final user = Provider.of<TaskUser>(context);    
 
     return StreamProvider<List<Task>>.value(
       value: DatabaseService().tasks,
@@ -25,7 +25,7 @@ class Home extends StatelessWidget {
           backgroundColor: Colors.purple[500],
           elevation: 0.0,
           actions: <Widget>[
-            FlatButton.icon(
+            TextButton.icon(
               icon: Icon(Icons.person),
               label: Text('Logout'),
               onPressed: () async {

@@ -11,7 +11,7 @@ class TaskTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);
+    final user = Provider.of<TaskUser>(context);
     final displayTime = task.time.substring(10, 15);
 
     return Padding(
@@ -35,14 +35,14 @@ class TaskTile extends StatelessWidget {
                 style:
                     TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
             trailing: ((task.checked == true)
-                ? FlatButton.icon(
+                ? TextButton.icon(
                     icon: Icon(Icons.delete),
                     label: Text('Delete'),
                     onPressed: () {
                       DatabaseService().deleteUserData(task.name, task.tuid);
                     },
                   )
-                : FlatButton(
+                : TextButton(
                     child: Icon(Icons.mode_edit),
                     onPressed: () {
                       Navigator.push(

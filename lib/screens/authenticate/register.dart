@@ -31,7 +31,7 @@ class _RegisterState extends State<Register> {
               elevation: 0.0,
               title: Text('Register to view your daily tasks'),
               actions: <Widget>[
-                FlatButton.icon(
+                TextButton.icon(
                   icon: Icon(Icons.person),
                   label: Text('Sign In'),
                   onPressed: () => widget.toggleView(),
@@ -67,8 +67,8 @@ class _RegisterState extends State<Register> {
                           },
                         ),
                         SizedBox(height: 20.0),
-                        RaisedButton(
-                          color: Colors.purple[800],
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(primary : Colors.purple[800]),
                           child: Text(
                             'Register',
                             style: TextStyle(color: Colors.white),

@@ -13,7 +13,7 @@ class _TaskListState extends State<TaskList> {
   @override
   Widget build(BuildContext context){
     var tasks = Provider.of<List<Task>>(context);
-    final user = Provider.of<User>(context);    
+    final user = Provider.of<TaskUser>(context);    
     final List<Task> filterTask = [];
 
     // get the current users tasks        

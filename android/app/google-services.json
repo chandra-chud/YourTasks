@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "1081061789713",
-    "firebase_url": "https://flut-app.firebaseio.com",
-    "project_id": "flut-app",
-    "storage_bucket": "flut-app.appspot.com"
+    "project_number": "695799649258",
+    "project_id": "tasksapp-a4067",
+    "storage_bucket": "tasksapp-a4067.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1081061789713:android:fb9c959aec72e5d1af61b0",
+        "mobilesdk_app_id": "1:695799649258:android:e2229925c37d3f13471893",
         "android_client_info": {
-          "package_name": "com.chandrachud.brew_crew"
+          "package_name": "com.chandrachud.tasksapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1081061789713-3fqve5pskmd94g54ptaji59cp669h6qq.apps.googleusercontent.com",
+          "client_id": "695799649258-2gdaad4ecn71bqinjhbdf2t1bq7pip7c.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD0eLq4ld2qGL25gyJQOuvOgBKA4ZgFpaY"
+          "current_key": "AIzaSyAvte6ShSiWzNVbrVH3_WqtQd7jckC0Y_U"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1081061789713-3fqve5pskmd94g54ptaji59cp669h6qq.apps.googleusercontent.com",
+              "client_id": "695799649258-2gdaad4ecn71bqinjhbdf2t1bq7pip7c.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

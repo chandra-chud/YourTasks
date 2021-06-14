@@ -32,7 +32,7 @@ class _SignInState extends State<SignIn> {
               elevation: 0.0,
               title: Text('Sign in to view your daily tasks'),
               actions: <Widget>[
-                FlatButton.icon(
+                TextButton.icon(
                   icon: Icon(Icons.person),
                   label: Text('Register'),
                   onPressed: () {
@@ -74,8 +74,8 @@ class _SignInState extends State<SignIn> {
                           },
                         ),
                         SizedBox(height: 20.0),
-                        RaisedButton(
-                          color: Colors.purple[800],
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(primary :  Colors.purple[800]),
                           child: Text(
                             'Sign In',
                             style: TextStyle(color: Colors.white),

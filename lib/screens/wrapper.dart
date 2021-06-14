@@ -8,7 +8,7 @@ class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //can get the current user
-    final user = Provider.of<User>(context);    
+    final user = Provider.of<TaskUser>(context);    
 
     print(user);
 

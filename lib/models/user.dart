@@ -1,6 +1,6 @@
 
-class User {
+class TaskUser {
   final String uid;
 
-  User({this.uid});
+  TaskUser({this.uid});
 }

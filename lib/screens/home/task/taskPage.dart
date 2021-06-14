@@ -50,7 +50,7 @@ class _TaskPageState extends State<TaskPage> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);
+    final user = Provider.of<TaskUser>(context);
 
     return Scaffold(
       backgroundColor: Colors.purple[80],
@@ -59,7 +59,7 @@ class _TaskPageState extends State<TaskPage> {
         backgroundColor: Colors.purple[500],
         elevation: 0.0,
         actions: <Widget>[
-          FlatButton.icon(
+          TextButton.icon(
             icon: Icon(Icons.delete_forever),
             label: Text('Delete'),
             onPressed: () {
@@ -87,8 +87,8 @@ class _TaskPageState extends State<TaskPage> {
               SizedBox(height: 20.0),
               Row(
                 children: <Widget>[
-                  RaisedButton(
-                    color: Colors.white,
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(primary :Colors.white),
                     child: Icon(Icons.timer),
                     onPressed: () {
                       selectTime(context);
@@ -101,8 +101,8 @@ class _TaskPageState extends State<TaskPage> {
                 ],
               ),
               SizedBox(height: 20.0),
-              RaisedButton(
-                  color: Colors.purple[800],
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary :Colors.purple[800]),
                   child: Text(
                     'Done',
                     style: TextStyle(color: Colors.white),
